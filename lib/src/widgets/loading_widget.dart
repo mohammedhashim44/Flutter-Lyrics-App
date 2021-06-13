@@ -23,7 +23,7 @@ class LoadingWidget extends StatelessWidget {
                 textAlign: TextAlign.center,
                 overflow: TextOverflow.ellipsis,
                 style: TextStyle(
-                  fontSize: 18,
+                  fontSize: 20,
                 ),
               ),
             ),
