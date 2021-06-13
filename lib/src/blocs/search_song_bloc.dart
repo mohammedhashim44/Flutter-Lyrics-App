@@ -11,6 +11,8 @@ class SearchForSong extends SearchSongBlocEvent {
   SearchForSong(this.songName);
 }
 
+class ClearSearch extends SearchSongBlocEvent {}
+
 class SearchSongBlocState {}
 
 class InitialState extends SearchSongBlocState {}
@@ -35,6 +37,8 @@ class SearchSongBloc extends Bloc<SearchSongBlocEvent, SearchSongBlocState> {
       SearchSongBlocEvent event) async* {
     if (event is SearchForSong) {
       yield* _mapSearchEventToState(event);
+    }else if(event is ClearSearch){
+      yield* _mapClearStateToState(event);
     }
   }
 
@@ -50,5 +54,11 @@ class SearchSongBloc extends Bloc<SearchSongBlocEvent, SearchSongBlocState> {
       print(e);
       yield ErrorState();
     }
+  }
+
+
+  Stream<SearchSongBlocState> _mapClearStateToState(
+      ClearSearch event) async* {
+    yield InitialState();
   }
 }
