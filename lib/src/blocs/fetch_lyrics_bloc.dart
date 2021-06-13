@@ -38,11 +38,10 @@ class FetchLyricsBloc extends Bloc<FetchLyricsBlocEvent, FetchLyricsBlocState> {
     }
   }
 
-  Stream<FetchLyricsBlocState> _mapSearchEventToState(
-      FetchLyric event) async* {
+  Stream<FetchLyricsBlocState> _mapSearchEventToState(FetchLyric event) async* {
     yield LoadingState();
     try {
-      var songLyrics = await  _lyricsRepository.fetchLyricsFromLink(event.link);
+      var songLyrics = await _lyricsRepository.fetchLyricsFromLink(event.link);
       yield LoadedState(songLyrics);
     } catch (e) {
       print(e);

@@ -3,7 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_lyrics/src/app.dart';
 import 'package:flutter_lyrics/src/service_locator.dart';
 
-void main() async{
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
@@ -12,4 +12,3 @@ void main() async{
   await setupServiceLocator();
   runApp(App());
 }
-

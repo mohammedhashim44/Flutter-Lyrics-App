@@ -51,7 +51,7 @@ class _FavoriteIconWidgetState extends State<FavoriteIconWidget> {
 
   void changeAnimation() {
     setState(
-          () {
+      () {
         animation = (animation == favoriteAnimation)
             ? unFavoriteAnimation
             : favoriteAnimation;

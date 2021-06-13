@@ -5,8 +5,8 @@ import 'package:flutter/painting.dart';
 class NetworkErrorWidget extends StatelessWidget {
   final Function onRetryClicked;
 
-  const NetworkErrorWidget({ this.onRetryClicked}) :
-      assert(onRetryClicked != null);
+  const NetworkErrorWidget({this.onRetryClicked})
+      : assert(onRetryClicked != null);
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +36,9 @@ class NetworkErrorWidget extends StatelessWidget {
                 ),
               ),
             ),
-            SizedBox(height: 10,),
+            SizedBox(
+              height: 10,
+            ),
             RaisedButton(
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(5)),

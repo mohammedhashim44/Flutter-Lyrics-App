@@ -32,7 +32,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
       child: Scaffold(
         body: PageView(
           controller: _pageController,
-          onPageChanged: (int index){
+          onPageChanged: (int index) {
             setState(() {
               _currentIndex = index;
             });

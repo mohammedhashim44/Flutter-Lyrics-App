@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 class SongsSearchDelegate extends SearchDelegate {
-
   @override
   ThemeData appBarTheme(BuildContext context) {
     return Theme.of(context);
@@ -20,9 +19,9 @@ class SongsSearchDelegate extends SearchDelegate {
       IconButton(
         icon: Icon(Icons.clear),
         onPressed: () {
-          if(query.trim().isEmpty){
+          if (query.trim().isEmpty) {
             Navigator.pop(context);
-          }else{
+          } else {
             query = '';
           }
         },

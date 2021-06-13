@@ -7,21 +7,20 @@ class SavedSongsRepository {
 
   SavedSongsRepository(this._localStorageRepository);
 
-  List<SongLyrics> getSavedSongs(){
+  List<SongLyrics> getSavedSongs() {
     var songs = _localStorageRepository.getSavedSongs();
     return songs;
   }
 
-  Future<void> addNewSong(SongLyrics songLyrics) async{
-      await _localStorageRepository.addNewSong(songLyrics);
+  Future<void> addNewSong(SongLyrics songLyrics) async {
+    await _localStorageRepository.addNewSong(songLyrics);
   }
 
-  Future<void> deleteSong(SongLyrics songLyrics)async{
+  Future<void> deleteSong(SongLyrics songLyrics) async {
     await _localStorageRepository.deleteSong(songLyrics);
   }
 
-  bool isSongSaved(SongLyrics songLyrics){
+  bool isSongSaved(SongLyrics songLyrics) {
     return _localStorageRepository.isSongSaved(songLyrics);
   }
-
 }

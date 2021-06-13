@@ -126,7 +126,7 @@ class _SearchScreenState extends State<SearchScreen> {
   }
 
   void onSongClicked(SongDetails songDetails) {
-    goToScreen(context,LyricsLoaderScreen(songDetails));
+    goToScreen(context, LyricsLoaderScreen(songDetails));
   }
 
   Widget _buildSongsWidgetsList(List<SongDetails> songsDetails) {
@@ -156,8 +156,7 @@ class _SearchScreenState extends State<SearchScreen> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Lottie.asset(
-                  "assets/lottie_animations/empty.json",
+              Lottie.asset("assets/lottie_animations/empty.json",
                   height: MediaQuery.of(context).size.height / 3,
                   repeat: false),
               Opacity(

@@ -60,4 +60,3 @@ class LyricsTextWidget extends StatelessWidget {
     return textSpans;
   }
 }
-

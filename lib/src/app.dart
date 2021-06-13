@@ -17,10 +17,12 @@ class App extends StatelessWidget {
       child: ThemeConsumer(
           child: Builder(
         builder: (context) => MaterialApp(
-          builder: (context,child){
+          builder: (context, child) {
             return ValueListenableBuilder(
-              valueListenable: serviceLocator.get<LocalStorageRepository>().fontFactorListenable,
-              builder: (context,fontFactor,_){
+              valueListenable: serviceLocator
+                  .get<LocalStorageRepository>()
+                  .fontFactorListenable,
+              builder: (context, fontFactor, _) {
                 return MediaQuery(
                   child: child,
                   data: MediaQuery.of(context).copyWith(

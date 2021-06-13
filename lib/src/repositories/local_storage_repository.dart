@@ -41,7 +41,7 @@ class LocalStorageRepository {
     await _songBox.add(songLyrics);
   }
 
-  int getSongIndex(SongLyrics songLyrics){
+  int getSongIndex(SongLyrics songLyrics) {
     var songs = getSavedSongs();
 
     var songIndex = songs.indexWhere((element) {
@@ -57,9 +57,9 @@ class LocalStorageRepository {
     }
   }
 
-  bool isSongSaved(SongLyrics songLyrics){
+  bool isSongSaved(SongLyrics songLyrics) {
     var songIndex = getSongIndex(songLyrics);
-    if(songIndex == -1){
+    if (songIndex == -1) {
       return false;
     }
     return true;
