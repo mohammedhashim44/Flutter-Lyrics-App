@@ -29,6 +29,7 @@ dev_dependencies:
     sdk: flutter
   hive_generator: 0.8.2
   build_runner: ^1.8.0
+  flutter_launcher_icons: 0.8.1
 
 flutter:
   uses-material-design: true
@@ -36,6 +37,7 @@ flutter:
   assets:
     - assets/flare_animations/
     - assets/lottie_animations/
+    - assets/app_icon/
 
   fonts:
 
