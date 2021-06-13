@@ -1,0 +1,61 @@
+name: flutter_lyrics
+description: A new Flutter application.
+
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.7.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  cupertino_icons: ^1.0.0
+  dio: 3.0.10
+  flutter_bloc: 6.1.3
+  get_it: ^5.0.1
+  flare_flutter: 2.0.6
+  hive: 1.5.0-pre
+  hive_flutter: 0.3.1
+  path_provider: 1.6.28
+  theme_provider: 0.4.0+1
+  lottie: 0.7.0+1
+  url_launcher: 5.7.10
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  hive_generator: 0.8.2
+  build_runner: ^1.8.0
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/flare_animations/
+    - assets/lottie_animations/
+
+  fonts:
+
+    - family: Poppins
+      fonts:
+        - asset: assets/fonts/Poppins/Poppins-Thin.ttf
+          weight: 100
+        - asset: assets/fonts/Poppins/Poppins-ExtraLight.ttf
+          weight: 200
+        - asset: assets/fonts/Poppins/Poppins-Light.ttf
+          weight: 300
+        - asset: assets/fonts/Poppins/Poppins-Regular.ttf
+          weight: 400
+        - asset: assets/fonts/Poppins/Poppins-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/Poppins/Poppins-SemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/Poppins/Poppins-Bold.ttf
+          weight: 700
+        - asset: assets/fonts/Poppins/Poppins-ExtraBold.ttf
+          weight: 800
+        - asset: assets/fonts/Poppins/Poppins-Black.ttf
+          weight: 900
