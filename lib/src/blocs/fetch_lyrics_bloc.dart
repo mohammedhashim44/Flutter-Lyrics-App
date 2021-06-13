@@ -1,6 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_lyrics/src/models/song_lyrics.dart';
-import 'package:flutter_lyrics/src/models/song_search_result.dart';
 import 'package:flutter_lyrics/src/repositories/songs_repository.dart';
 import 'package:flutter_lyrics/src/service_locator.dart';
 

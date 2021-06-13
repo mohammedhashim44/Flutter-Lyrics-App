@@ -1,4 +1,3 @@
-import 'package:flare_flutter/flare_actor.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
@@ -9,7 +8,6 @@ import 'package:flutter_lyrics/src/screens/lyrics_loader_screen.dart';
 import 'package:flutter_lyrics/src/utils/navigation.dart';
 import 'package:flutter_lyrics/src/widgets/loading_widget.dart';
 import 'package:flutter_lyrics/src/widgets/network_error_widget.dart';
-import 'package:theme_provider/theme_provider.dart';
 import 'package:lottie/lottie.dart';
 import 'songs_search_delegate.dart';
 

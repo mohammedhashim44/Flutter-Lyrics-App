@@ -1,7 +1,6 @@
 import 'package:flare_flutter/flare_actor.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_lyrics/src/models/song_lyrics.dart';
-import 'package:flutter_lyrics/src/repositories/local_storage_repository.dart';
 import 'package:flutter_lyrics/src/repositories/saved_songs_repository.dart';
 import 'package:flutter_lyrics/src/service_locator.dart';
 import 'package:flutter_lyrics/src/screens/lyrics_screen/lyrics_screen.dart';

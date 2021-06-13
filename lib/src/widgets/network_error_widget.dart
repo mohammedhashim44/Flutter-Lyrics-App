@@ -1,7 +1,6 @@
 import 'package:flare_flutter/flare_actor.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
-import 'package:lottie/lottie.dart';
 
 class NetworkErrorWidget extends StatelessWidget {
   final Function onRetryClicked;

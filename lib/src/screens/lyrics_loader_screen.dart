@@ -8,8 +8,6 @@ import 'package:flutter_lyrics/src/widgets/loading_widget.dart';
 import 'package:flutter_lyrics/src/widgets/network_error_widget.dart';
 import 'package:flutter_lyrics/src/screens/lyrics_screen/lyrics_screen.dart';
 
-import '../service_locator.dart';
-
 class LyricsLoaderScreen extends StatelessWidget {
   final SongDetails songDetails;
 

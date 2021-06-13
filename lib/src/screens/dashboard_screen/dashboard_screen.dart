@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_lyrics/src/blocs/search_song_bloc.dart';
 
 import 'bottom_navigator_item.dart';
-import 'dart:developer';
 
 class DashboardScreen extends StatefulWidget {
   @override
