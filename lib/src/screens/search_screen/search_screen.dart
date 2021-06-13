@@ -40,7 +40,14 @@ class _SearchScreenState extends State<SearchScreen> {
             }
           }
 
+          // Disable scroll if user is not in
+          // LoadedState and not empty
+          bool ableToScroll = state is LoadedState && state.songSearchResult.songsDetails.isNotEmpty;
+
           return CustomScrollView(
+            physics: ableToScroll
+                ? AlwaysScrollableScrollPhysics()
+                : NeverScrollableScrollPhysics(),
             slivers: [
               _buildSliverAppBar(),
               screenWidget,
