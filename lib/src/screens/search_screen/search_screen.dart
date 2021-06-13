@@ -42,16 +42,17 @@ class _SearchScreenState extends State<SearchScreen> {
 
           // Disable scroll if user is not in
           // LoadedState and not empty
-          bool ableToScroll = state is LoadedState && state.songSearchResult.songsDetails.isNotEmpty;
+          bool ableToScroll = state is LoadedState &&
+              state.songSearchResult.songsDetails.isNotEmpty;
 
           return WillPopScope(
-            onWillPop: ()async{
+            onWillPop: () async {
               // If user hit back button and has result,clear the result
               // else , pop the screen
-              if(state is LoadedState){
+              if (state is LoadedState) {
                 context.read<SearchSongBloc>().add(ClearSearch());
                 return false;
-              }else{
+              } else {
                 return true;
               }
             },
