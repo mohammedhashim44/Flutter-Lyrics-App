@@ -90,16 +90,18 @@ class _SearchScreenState extends State<SearchScreen> {
           icon: Icon(
             Icons.search,
           ),
-          onPressed: () async {
-            var searchedSong = await showSearch(
-              context: context,
-              delegate: SongsSearchDelegate(),
-            );
-            onSearchSubmitted(searchedSong);
-          },
+          onPressed: openSearchDelegate,
         ),
       ],
     );
+  }
+
+  void openSearchDelegate()async{
+    var searchedSong = await showSearch(
+      context: context,
+      delegate: SongsSearchDelegate(),
+    );
+    onSearchSubmitted(searchedSong);
   }
 
   Widget _buildLoadingWidget() {
@@ -109,36 +111,42 @@ class _SearchScreenState extends State<SearchScreen> {
   }
 
   Widget _buildInitialWidget() {
+    // If user touch anywhere in the screen
+    // push the screen dialogue
     return SliverFillRemaining(
-      child: Center(
-        child: Container(
-          padding: EdgeInsets.symmetric(
-            horizontal: 20,
-          ),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Container(
-                padding: EdgeInsets.symmetric(
-                  horizontal: 40,
-                ),
-                child: Lottie.asset(
-                  "assets/lottie_animations/4876-speakers-music.json",
-                  repeat: true,
-                ),
-              ),
-              Opacity(
-                opacity: 0.8,
-                child: Text(
-                  "Search to get Lyrics :)",
-                  textAlign: TextAlign.center,
-                  overflow: TextOverflow.ellipsis,
-                  style: TextStyle(
-                    fontSize: 20,
+      child: GestureDetector(
+        behavior: HitTestBehavior.opaque,
+        onTap: openSearchDelegate,
+        child: Center(
+          child: Container(
+            padding: EdgeInsets.symmetric(
+              horizontal: 20,
+            ),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Container(
+                  padding: EdgeInsets.symmetric(
+                    horizontal: 40,
+                  ),
+                  child: Lottie.asset(
+                    "assets/lottie_animations/4876-speakers-music.json",
+                    repeat: true,
                   ),
                 ),
-              ),
-            ],
+                Opacity(
+                  opacity: 0.8,
+                  child: Text(
+                    "Tap anywhere to search for Lyrics :)",
+                    textAlign: TextAlign.center,
+                    overflow: TextOverflow.visible,
+                    style: TextStyle(
+                      fontSize: 20,
+                    ),
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),
