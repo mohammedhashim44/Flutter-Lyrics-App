@@ -46,13 +46,19 @@ class _LyricsScreenState extends State<LyricsScreen> {
         mainAxisAlignment: MainAxisAlignment.end,
         crossAxisAlignment: CrossAxisAlignment.end,
         children: [
-          AnimatedOpacity(
-            opacity: showFAB ? 1 : 0,
-            duration: Duration(milliseconds: 400),
-            curve: Curves.easeInOut,
-            child: FavoriteIconWidget(savedToFavorites, () {
-              onFloatingButtonClicked(widget.songLyrics);
-            }),
+          Container(
+            margin: EdgeInsets.symmetric(
+              vertical: 10,
+              horizontal: 10,
+            ),
+            child: AnimatedOpacity(
+              opacity: showFAB ? 1 : 0,
+              duration: Duration(milliseconds: 400),
+              curve: Curves.easeInOut,
+              child: FavoriteIconWidget(savedToFavorites, () {
+                onFloatingButtonClicked(widget.songLyrics);
+              }),
+            ),
           ),
         ],
       ),
