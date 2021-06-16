@@ -9,7 +9,7 @@
 
     <application
         android:name="io.flutter.app.FlutterApplication"
-        android:label="flutter_lyrics"
+        android:label="My Lyrics"
         android:icon="@mipmap/ture">
         <activity
             android:name=".MainActivity"
