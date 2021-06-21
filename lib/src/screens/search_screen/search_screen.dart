@@ -46,16 +46,7 @@ class _SearchScreenState extends State<SearchScreen> {
               state.songSearchResult.songsDetails.isNotEmpty;
 
           return WillPopScope(
-            onWillPop: () async {
-              // If user hit back button and has result,clear the result
-              // else , pop the screen
-              if (state is LoadedState) {
-                context.read<SearchSongBloc>().add(ClearSearch());
-                return false;
-              } else {
-                return true;
-              }
-            },
+            onWillPop: onUserHitBack,
             child: CustomScrollView(
               physics: ableToScroll
                   ? AlwaysScrollableScrollPhysics()
@@ -69,6 +60,18 @@ class _SearchScreenState extends State<SearchScreen> {
         },
       ),
     );
+  }
+
+  Future<bool> onUserHitBack() async{
+    // If user hit back button and has result,clear the result
+    // else , pop the screen
+    var state = context.read<SearchSongBloc>().state;
+    if (state is LoadedState) {
+      context.read<SearchSongBloc>().add(ClearSearch());
+      return false;
+    } else {
+      return true;
+    }
   }
 
   void onSearchSubmitted(String query) {
