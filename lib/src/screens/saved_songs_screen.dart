@@ -83,7 +83,10 @@ class _SavedSongsScreenState extends State<SavedSongsScreen> {
         );
       },
       separatorBuilder: (context, index) {
-        return Divider();
+        return Divider(
+          height: 1,
+          thickness: 0.5,
+        );
       },
     );
   }
