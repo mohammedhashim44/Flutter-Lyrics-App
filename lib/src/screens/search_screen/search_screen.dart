@@ -167,7 +167,10 @@ class _SearchScreenState extends State<SearchScreen> {
         child: SongWidget(e),
       );
       list.add(songWidget);
-      list.add(Divider());
+      list.add(Divider(
+        height: 1,
+        thickness: 0.5,
+      ));
     });
     return SliverList(
       delegate: SliverChildListDelegate(list),
