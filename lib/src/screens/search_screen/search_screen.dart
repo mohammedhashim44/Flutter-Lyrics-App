@@ -22,6 +22,7 @@ class _SearchScreenState extends State<SearchScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: _buildAppBar(),
       body: BlocBuilder<SearchSongBloc, SearchSongBlocState>(
         builder: (context, state) {
           Widget screenWidget;
@@ -40,22 +41,9 @@ class _SearchScreenState extends State<SearchScreen> {
             }
           }
 
-          // Disable scroll if user is not in
-          // LoadedState and not empty
-          bool ableToScroll = state is LoadedState &&
-              state.songSearchResult.songsDetails.isNotEmpty;
-
           return WillPopScope(
             onWillPop: onUserHitBack,
-            child: CustomScrollView(
-              physics: ableToScroll
-                  ? AlwaysScrollableScrollPhysics()
-                  : NeverScrollableScrollPhysics(),
-              slivers: [
-                _buildSliverAppBar(),
-                screenWidget,
-              ],
-            ),
+            child: screenWidget,
           );
         },
       ),
@@ -81,10 +69,9 @@ class _SearchScreenState extends State<SearchScreen> {
     }
   }
 
-  Widget _buildSliverAppBar() {
-    return SliverAppBar(
+  Widget _buildAppBar() {
+    return AppBar(
       elevation: 4,
-      floating: true,
       title: Text(
         "Search",
       ),
@@ -108,48 +95,44 @@ class _SearchScreenState extends State<SearchScreen> {
   }
 
   Widget _buildLoadingWidget() {
-    return SliverFillRemaining(
-      child: LoadingWidget(),
-    );
+    return LoadingWidget();
   }
 
   Widget _buildInitialWidget() {
     // If user touch anywhere in the screen
     // push the screen dialogue
-    return SliverFillRemaining(
-      child: GestureDetector(
-        behavior: HitTestBehavior.opaque,
-        onTap: openSearchDelegate,
-        child: Center(
-          child: Container(
-            padding: EdgeInsets.symmetric(
-              horizontal: 20,
-            ),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Container(
-                  padding: EdgeInsets.symmetric(
-                    horizontal: 40,
-                  ),
-                  child: Lottie.asset(
-                    "assets/lottie_animations/4876-speakers-music.json",
-                    repeat: true,
+    return GestureDetector(
+      behavior: HitTestBehavior.opaque,
+      onTap: openSearchDelegate,
+      child: Center(
+        child: Container(
+          padding: EdgeInsets.symmetric(
+            horizontal: 20,
+          ),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Container(
+                padding: EdgeInsets.symmetric(
+                  horizontal: 40,
+                ),
+                child: Lottie.asset(
+                  "assets/lottie_animations/4876-speakers-music.json",
+                  repeat: true,
+                ),
+              ),
+              Opacity(
+                opacity: 0.8,
+                child: Text(
+                  "Tap anywhere to search for Lyrics :)",
+                  textAlign: TextAlign.center,
+                  overflow: TextOverflow.visible,
+                  style: TextStyle(
+                    fontSize: 20,
                   ),
                 ),
-                Opacity(
-                  opacity: 0.8,
-                  child: Text(
-                    "Tap anywhere to search for Lyrics :)",
-                    textAlign: TextAlign.center,
-                    overflow: TextOverflow.visible,
-                    style: TextStyle(
-                      fontSize: 20,
-                    ),
-                  ),
-                ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
       ),
@@ -175,37 +158,35 @@ class _SearchScreenState extends State<SearchScreen> {
         thickness: 0.5,
       ));
     });
-    return SliverList(
-      delegate: SliverChildListDelegate(list),
+    return ListView(
+      children: list,
     );
   }
 
   Widget _buildNoSongsFoundWidget() {
-    return SliverFillRemaining(
-      child: Center(
-        child: Container(
-          padding: EdgeInsets.symmetric(
-            horizontal: 20,
-          ),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Lottie.asset("assets/lottie_animations/empty.json",
-                  height: MediaQuery.of(context).size.height / 3,
-                  repeat: false),
-              Opacity(
-                opacity: 0.8,
-                child: Text(
-                  "No Songs Found :(",
-                  textAlign: TextAlign.center,
-                  overflow: TextOverflow.ellipsis,
-                  style: TextStyle(
-                    fontSize: 18,
-                  ),
+    return Center(
+      child: Container(
+        padding: EdgeInsets.symmetric(
+          horizontal: 20,
+        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Lottie.asset("assets/lottie_animations/empty.json",
+                height: MediaQuery.of(context).size.height / 3,
+                repeat: false),
+            Opacity(
+              opacity: 0.8,
+              child: Text(
+                "No Songs Found :(",
+                textAlign: TextAlign.center,
+                overflow: TextOverflow.ellipsis,
+                style: TextStyle(
+                  fontSize: 18,
                 ),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
@@ -218,10 +199,8 @@ class _SearchScreenState extends State<SearchScreen> {
       }
     }
 
-    return SliverFillRemaining(
-      child: NetworkErrorWidget(
-        onRetryClicked: onRetryClicked,
-      ),
+    return NetworkErrorWidget(
+      onRetryClicked: onRetryClicked,
     );
   }
 }
