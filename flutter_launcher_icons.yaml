@@ -1,4 +1,4 @@
 flutter_icons:
   android: ture
   ios: true
-  image_path: "assets/app_icon/launcher_icon.png"
+  image_path: "assets/app_icon/launcher_icon_rounded.png"
