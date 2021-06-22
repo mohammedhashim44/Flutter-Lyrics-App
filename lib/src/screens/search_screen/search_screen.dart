@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_lyrics/src/blocs/search_song_bloc.dart';
 import 'package:flutter_lyrics/src/models/song_search_result.dart';
 import 'package:flutter_lyrics/src/screens/lyrics_loader_screen.dart';
+import 'package:flutter_lyrics/src/screens/search_screen/searched_song_widget.dart';
 import 'package:flutter_lyrics/src/utils/navigation.dart';
 import 'package:flutter_lyrics/src/widgets/loading_widget.dart';
 import 'package:flutter_lyrics/src/widgets/network_error_widget.dart';
@@ -150,7 +151,7 @@ class _SearchScreenState extends State<SearchScreen> {
         onTap: () {
           onSongClicked(e);
         },
-        child: SongWidget(e),
+        child: SearchedSongWidget(e),
       );
       list.add(songWidget);
       list.add(Divider(
@@ -201,52 +202,6 @@ class _SearchScreenState extends State<SearchScreen> {
 
     return NetworkErrorWidget(
       onRetryClicked: onRetryClicked,
-    );
-  }
-}
-
-class SongWidget extends StatelessWidget {
-  final SongDetails songDetails;
-
-  const SongWidget(this.songDetails);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.symmetric(
-        horizontal: 20,
-        vertical: 10,
-      ),
-      child: Row(
-        children: [
-          Expanded(
-            child: Container(
-              padding: EdgeInsets.only(right: 20),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    songDetails.songName,
-                    overflow: TextOverflow.ellipsis,
-                    maxLines: 1,
-                    style: Theme.of(context).textTheme.headline6,
-                  ),
-                  Text(
-                    songDetails.singer,
-                    overflow: TextOverflow.ellipsis,
-                    maxLines: 1,
-                    style: Theme.of(context).textTheme.subtitle1,
-                  ),
-                ],
-              ),
-            ),
-          ),
-          Icon(
-            Icons.arrow_forward_ios,
-            size: 15,
-          )
-        ],
-      ),
     );
   }
 }
