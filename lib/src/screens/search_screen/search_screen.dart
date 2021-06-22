@@ -51,7 +51,7 @@ class _SearchScreenState extends State<SearchScreen> {
     );
   }
 
-  Future<bool> onUserHitBack() async{
+  Future<bool> onUserHitBack() async {
     // If user hit back button and has result,clear the result
     // else , pop the screen
     var state = context.read<SearchSongBloc>().state;
@@ -87,7 +87,7 @@ class _SearchScreenState extends State<SearchScreen> {
     );
   }
 
-  void openSearchDelegate()async{
+  void openSearchDelegate() async {
     var searchedSong = await showSearch(
       context: context,
       delegate: SongsSearchDelegate(),
@@ -174,8 +174,7 @@ class _SearchScreenState extends State<SearchScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Lottie.asset("assets/lottie_animations/empty.json",
-                height: MediaQuery.of(context).size.height / 3,
-                repeat: false),
+                height: MediaQuery.of(context).size.height / 3, repeat: false),
             Opacity(
               opacity: 0.8,
               child: Text(

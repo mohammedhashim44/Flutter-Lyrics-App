@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_lyrics/src/models/song_search_result.dart';
 
