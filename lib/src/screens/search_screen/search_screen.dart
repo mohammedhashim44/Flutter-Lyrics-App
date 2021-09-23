@@ -3,10 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_lyrics/src/blocs/search_song_bloc.dart';
+import 'package:flutter_lyrics/src/models/song_data.dart';
 import 'package:flutter_lyrics/src/models/song_search_result.dart';
-import 'package:flutter_lyrics/src/screens/lyrics_loader_screen.dart';
-import 'package:flutter_lyrics/src/screens/search_screen/searched_song_widget.dart';
-import 'package:flutter_lyrics/src/utils/navigation.dart';
+import 'package:flutter_lyrics/src/repositories/songs_repository.dart';
+import 'package:flutter_lyrics/src/screens/song_data_loader_screen.dart';
+import 'package:flutter_lyrics/src/screens/search_screen/song_list_item_widget.dart';
+import 'package:flutter_lyrics/src/screens/song_screen/song_screen.dart';
 import 'package:flutter_lyrics/src/widgets/loading_widget.dart';
 import 'package:flutter_lyrics/src/widgets/network_error_widget.dart';
 import 'package:lottie/lottie.dart';
@@ -141,7 +143,11 @@ class _SearchScreenState extends State<SearchScreen> {
   }
 
   void onSongClicked(SongDetails songDetails) {
-    goToScreen(context, LyricsLoaderScreen(songDetails));
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+          builder: (context) => SongDataLoaderScreen(songDetails)),
+    );
   }
 
   Widget _buildSongsWidgetsList(List<SongDetails> songsDetails) {
@@ -151,13 +157,9 @@ class _SearchScreenState extends State<SearchScreen> {
         onTap: () {
           onSongClicked(e);
         },
-        child: SearchedSongWidget(e),
+        child: SongListItemWidget(e),
       );
       list.add(songWidget);
-      list.add(Divider(
-        height: 1,
-        thickness: 0.5,
-      ));
     });
     return ListView(
       children: list,

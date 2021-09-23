@@ -1,4 +1,4 @@
-import 'package:flutter_lyrics/src/models/song_lyrics.dart';
+import 'package:flutter_lyrics/src/models/song_data.dart';
 
 import 'package:flutter_lyrics/src/repositories/local_storage_repository.dart';
 
@@ -7,20 +7,20 @@ class SavedSongsRepository {
 
   SavedSongsRepository(this._localStorageRepository);
 
-  List<SongLyrics> getSavedSongs() {
+  List<SongData> getSavedSongs() {
     var songs = _localStorageRepository.getSavedSongs();
     return songs;
   }
 
-  Future<void> addNewSong(SongLyrics songLyrics) async {
+  Future<void> addNewSong(SongData songLyrics) async {
     await _localStorageRepository.addNewSong(songLyrics);
   }
 
-  Future<void> deleteSong(SongLyrics songLyrics) async {
+  Future<void> deleteSong(SongData songLyrics) async {
     await _localStorageRepository.deleteSong(songLyrics);
   }
 
-  bool isSongSaved(SongLyrics songLyrics) {
+  bool isSongSaved(SongData songLyrics) {
     return _localStorageRepository.isSongSaved(songLyrics);
   }
 }

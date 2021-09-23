@@ -1,32 +1,61 @@
 import 'package:dio/dio.dart';
-import 'package:flutter_lyrics/src/models/song_lyrics.dart';
+import 'package:flutter_lyrics/src/models/song_data.dart';
 import 'package:flutter_lyrics/src/models/song_search_result.dart';
 
 import 'dart:convert';
 
-const BASE_URL = "https://mylyrics44.herokuapp.com/api/";
-const SEARCH_URL = BASE_URL + "search_api?song=";
-const FETCH_LYRICS_URL = BASE_URL + "get_song_from_link?link=";
+//const BASE_URL = "https://mylyrics44.herokuapp.com/api/";
+const BASE_URL = "http://192.168.183.127:5000/api/";
+const SEARCH_URL = BASE_URL + "search_song";
+const FETCH_LYRICS_URL = BASE_URL + "get_song_data";
+
+// in milliseconds = 10 seconds
+const requestTimeoutDurationInMilliseconds = 10 * 1000;
 
 abstract class SongsRepository {
   Future<SongSearchResult> getSearchResults(String songName);
 
-  Future<SongLyrics> fetchLyricsFromLink(String link);
+  Future<SongData> fetchSongDataFromIdentifier(String link);
 }
 
 class APISongsRepository extends SongsRepository {
-  @override
-  Future<SongSearchResult> getSearchResults(String songName) async {
-    var url = SEARCH_URL + songName;
-    var response = await Dio().get(url);
-    return SongSearchResult.fromJson(jsonDecode(response.data));
+  Dio _dio;
+
+  APISongsRepository() {
+    if (_dio == null) {
+      BaseOptions options = new BaseOptions(
+        connectTimeout: requestTimeoutDurationInMilliseconds,
+        receiveTimeout: requestTimeoutDurationInMilliseconds,
+      );
+      _dio = new Dio(options);
+    }
   }
 
   @override
-  Future<SongLyrics> fetchLyricsFromLink(String link) async {
-    var url = FETCH_LYRICS_URL + link;
-    var response = await Dio().get(url);
-    var songLyrics = SongLyrics.fromJson(jsonDecode(response.data));
+  Future<SongSearchResult> getSearchResults(String songName) async {
+    var body = {
+      "song": songName,
+    };
+    var response = await _dio.post(
+      SEARCH_URL,
+      data: body,
+    );
+    print(response.data);
+    print(response.data.runtimeType);
+    print("###" * 50);
+
+    return SongSearchResult.fromJson(response.data);
+  }
+
+  @override
+  Future<SongData> fetchSongDataFromIdentifier(String identifier) async {
+    var body = {
+      "identifier": identifier,
+    };
+    print("FETCH SONG DATA : IDENTIFIER => $identifier" * 50);
+    var response = await _dio.post(FETCH_LYRICS_URL, data: body);
+    print(response.data);
+    var songLyrics = SongData.fromJson(response.data);
     return songLyrics;
   }
 }
@@ -39,8 +68,9 @@ class FakeSongsRepository extends SongsRepository {
   }
 
   @override
-  Future<SongLyrics> fetchLyricsFromLink(String link) async {
-    return SongLyrics("Fake Title", perfectLyrics);
+  Future<SongData> fetchSongDataFromIdentifier(String link) async {
+    return SongData(
+        "identifier", "songTitle", "singer", "image", "description", "lyrics");
   }
 
   String getFakeSearchResults() {

@@ -2,10 +2,11 @@ import 'package:flare_flutter/flare_actor.dart';
 import 'package:flutter/material.dart';
 
 class FavoriteIconWidget extends StatefulWidget {
+  final double size;
   final bool isSaved;
   final Function onIconClicked;
 
-  const FavoriteIconWidget(this.isSaved, this.onIconClicked)
+  const FavoriteIconWidget(this.isSaved, this.onIconClicked,{this.size = 28,})
       : assert(isSaved != null);
 
   @override
@@ -16,11 +17,12 @@ class _FavoriteIconWidgetState extends State<FavoriteIconWidget> {
   String favoriteAnimation = "Favorite";
   String unFavoriteAnimation = "Unfavorite";
   String animation;
-  double size = 40;
+  double size ;
 
   @override
   void initState() {
     super.initState();
+    size = widget.size;
     animation = widget.isSaved ? favoriteAnimation : unFavoriteAnimation;
   }
 
@@ -30,10 +32,6 @@ class _FavoriteIconWidgetState extends State<FavoriteIconWidget> {
       onTap: changeAnimation,
       child: Container(
         padding: EdgeInsets.all(10),
-        decoration: BoxDecoration(
-          shape: BoxShape.circle,
-          color: Colors.white,
-        ),
         child: Container(
           height: size,
           width: size,
@@ -43,6 +41,7 @@ class _FavoriteIconWidgetState extends State<FavoriteIconWidget> {
             fit: BoxFit.contain,
             animation: animation,
             shouldClip: false,
+            color: Colors.white,
           ),
         ),
       ),

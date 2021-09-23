@@ -50,6 +50,15 @@ List<AppTheme> appThemes = [
       accentColor: Colors.white,
     ),
   ),
+  AppTheme(
+    id: "3",
+    description: "3",
+    data: getThemeDataFromColors(
+      scaffoldBackgroundColor: Color(0xff171717),
+      primaryColor: Color(0xff444444),
+      accentColor: Colors.white,
+    ),
+  ),
 ];
 
 ThemeData getThemeDataFromColors({

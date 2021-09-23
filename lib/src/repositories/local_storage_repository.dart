@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_lyrics/src/models/song_lyrics.dart';
+import 'package:flutter_lyrics/src/models/song_data.dart';
 import 'package:hive/hive.dart';
 import 'package:path_provider/path_provider.dart' as pathProvider;
 
@@ -24,7 +24,7 @@ class LocalStorageRepository {
   Future<void> init() async {
     Directory directory = await pathProvider.getApplicationDocumentsDirectory();
 
-    Hive.registerAdapter(SongLyricsAdapter());
+    Hive.registerAdapter(SongDataAdapter());
     Hive.init(directory.path);
     _songBox = await Hive.openBox(SONGS_BOX_NAME);
     _settingsBox = await Hive.openBox(SETTINGS_BOX_NAME);
@@ -32,32 +32,32 @@ class LocalStorageRepository {
     fontFactorListenable = ValueNotifier(getFontFactor());
   }
 
-  List<SongLyrics> getSavedSongs() {
-    var x = _songBox.values.map<SongLyrics>((e) => e).toList();
+  List<SongData> getSavedSongs() {
+    var x = _songBox.values.map<SongData>((e) => e).toList();
     return x;
   }
 
-  Future<void> addNewSong(SongLyrics songLyrics) async {
+  Future<void> addNewSong(SongData songLyrics) async {
     await _songBox.add(songLyrics);
   }
 
-  int getSongIndex(SongLyrics songLyrics) {
+  int getSongIndex(SongData songLyrics) {
     var songs = getSavedSongs();
 
     var songIndex = songs.indexWhere((element) {
-      return element.hasSameData(songLyrics);
+      return element.isTheSameSong(songLyrics);
     });
     return songIndex;
   }
 
-  Future<void> deleteSong(SongLyrics songLyrics) async {
+  Future<void> deleteSong(SongData songLyrics) async {
     var songIndex = getSongIndex(songLyrics);
     if (songIndex != -1) {
       await _songBox.deleteAt(songIndex);
     }
   }
 
-  bool isSongSaved(SongLyrics songLyrics) {
+  bool isSongSaved(SongData songLyrics) {
     var songIndex = getSongIndex(songLyrics);
     if (songIndex == -1) {
       return false;

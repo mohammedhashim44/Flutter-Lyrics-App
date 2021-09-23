@@ -1,9 +1,11 @@
 import 'package:flare_flutter/flare_actor.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_lyrics/src/models/song_lyrics.dart';
+import 'package:flutter_lyrics/src/models/song_data.dart';
+import 'package:flutter_lyrics/src/models/song_search_result.dart';
 import 'package:flutter_lyrics/src/repositories/saved_songs_repository.dart';
+import 'package:flutter_lyrics/src/screens/search_screen/song_list_item_widget.dart';
+import 'package:flutter_lyrics/src/screens/song_screen/song_screen.dart';
 import 'package:flutter_lyrics/src/service_locator.dart';
-import 'package:flutter_lyrics/src/screens/lyrics_screen/lyrics_screen.dart';
 import 'package:flutter_lyrics/src/utils/navigation.dart';
 
 class SavedSongsScreen extends StatefulWidget {
@@ -12,7 +14,7 @@ class SavedSongsScreen extends StatefulWidget {
 }
 
 class _SavedSongsScreenState extends State<SavedSongsScreen> {
-  List<SongLyrics> songs;
+  List<SongData> songs;
 
   @override
   void initState() {
@@ -71,7 +73,8 @@ class _SavedSongsScreenState extends State<SavedSongsScreen> {
   }
 
   Widget _buildSavedSongsWidget() {
-    return ListView.separated(
+
+    return ListView.builder(
       itemCount: songs.length,
       itemBuilder: (context, index) {
         var song = songs[index];
@@ -79,15 +82,9 @@ class _SavedSongsScreenState extends State<SavedSongsScreen> {
           onTap: () {
             onSongClicked(song);
           },
-          child: getItemWidget(song.songTitle, context),
+          child: getItemWidget(song, context),
         );
-      },
-      separatorBuilder: (context, index) {
-        return Divider(
-          height: 1,
-          thickness: 0.5,
-        );
-      },
+      }
     );
   }
 
@@ -96,21 +93,24 @@ class _SavedSongsScreenState extends State<SavedSongsScreen> {
     songs = savedSongsRepo.getSavedSongs();
   }
 
-  Widget getItemWidget(String title, BuildContext context) {
+  Widget getItemWidget(SongData songData, BuildContext context) {
+    return SongListItemWidget(
+        SongDetails.fromSongData(songData)
+    );
     return Container(
       padding: EdgeInsets.symmetric(
         horizontal: 20,
         vertical: 10,
       ),
-      child: Text(title.toString(),
+      child: Text("title".toString(),
           style: TextStyle(
             fontSize: 20,
           )),
     );
   }
 
-  void onSongClicked(SongLyrics songLyrics) {
-    goToScreen(context, LyricsScreen(songLyrics), onReturn: onScreenPoped);
+  void onSongClicked(SongData songLyrics) {
+    goToScreen(context, SongScreen(songLyrics), onReturn: onScreenPoped);
   }
 
   void onScreenPoped() {
