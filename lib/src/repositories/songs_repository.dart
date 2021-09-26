@@ -9,8 +9,8 @@ const BASE_URL = "http://192.168.183.127:5000/api/";
 const SEARCH_URL = BASE_URL + "search_song";
 const FETCH_LYRICS_URL = BASE_URL + "get_song_data";
 
-// in milliseconds = 10 seconds
-const requestTimeoutDurationInMilliseconds = 10 * 1000;
+// in milliseconds = 20 seconds
+const requestTimeoutDurationInMilliseconds = 20 * 1000;
 
 abstract class SongsRepository {
   Future<SongSearchResult> getSearchResults(String songName);
