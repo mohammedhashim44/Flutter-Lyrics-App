@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_lyrics/src/models/song_data.dart';
@@ -46,15 +48,12 @@ class _SongScreenState extends State<SongScreen> {
         child: CustomScrollView(
           slivers: [
             SliverAppBar(
-              // Provide a standard title.
               title: _buildHeader(),
-              // Allows the user to reveal the app bar if they begin scrolling
-              // back up the list of items.
               floating: false,
-              // Display a placeholder widget to visualize the shrinking size.
+              automaticallyImplyLeading: false,
               flexibleSpace: Placeholder(),
-              // Make the initial height of the SliverAppBar larger than normal.
               expandedHeight: 100,
+              actions: [],
             ),
             SliverToBoxAdapter(
               child: _buildBody(),
@@ -71,8 +70,7 @@ class _SongScreenState extends State<SongScreen> {
             gradient: LinearGradient(
               colors: [
                 backgroundColor,
-                // backgroundColorBottom,
-                backgroundColor,
+                backgroundColorBottom,
               ],
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter,
@@ -128,48 +126,50 @@ class _SongScreenState extends State<SongScreen> {
   }
 
   Widget _buildHeader() {
-    return Row(
-      children: [
-        Hero(
-          tag: widget.songData.identifier + "image",
-          child: AppImage(
-            widget.songData.image,
+    return Container(
+      child: Row(
+        children: [
+          Hero(
+            tag: widget.songData.identifier + "image",
+            child: AppImage(
+              widget.songData.image,
+            ),
           ),
-        ),
-        SizedBox(
-          width: 10,
-        ),
-        Expanded(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Hero(
-                tag: widget.songData.identifier + "song_name",
-                child: Text(
-                  widget.songData.songTitle,
-                  overflow: TextOverflow.ellipsis,
-                  maxLines: 1,
-                  style: Theme.of(context).textTheme.subtitle1.apply(
-                        color: songNameTextColor,
-                      ),
-                ),
-              ),
-              Hero(
-                tag: widget.songData.identifier + "singer",
-                child: Text(
-                  widget.songData.singer,
-                  overflow: TextOverflow.ellipsis,
-                  maxLines: 1,
-                  style: Theme.of(context).textTheme.subtitle1.apply(
-                        color: singerNameTextColor,
-                      ),
-                ),
-              ),
-            ],
+          SizedBox(
+            width: 10,
           ),
-        ),
-        _buildFavoriteWidget()
-      ],
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Hero(
+                  tag: widget.songData.identifier + "song_name",
+                  child: Text(
+                    widget.songData.songTitle,
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: 1,
+                    style: Theme.of(context).textTheme.subtitle1.apply(
+                          color: songNameTextColor,
+                        ),
+                  ),
+                ),
+                Hero(
+                  tag: widget.songData.identifier + "singer",
+                  child: Text(
+                    widget.songData.singer,
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: 1,
+                    style: Theme.of(context).textTheme.subtitle1.apply(
+                          color: singerNameTextColor,
+                        ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          _buildFavoriteWidget()
+        ],
+      ),
     );
   }
 
