@@ -185,8 +185,9 @@ class _SongScreenState extends State<SongScreen> {
   Widget _buildLyrics() {
     return Text(
       widget.songData.lyrics ?? "",
+      textAlign: TextAlign.center,
       style: TextStyle(
-        fontSize: 20,
+        fontSize: 16,
         color: lyricsTextColor,
       ),
     );
