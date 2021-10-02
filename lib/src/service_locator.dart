@@ -9,7 +9,6 @@ Future<void> setupServiceLocator() async {
   serviceLocator
       .registerSingleton<LocalStorageRepository>(localStorageRepository);
 
-  //serviceLocator.registerSingleton<SongsRepository>(FakeSongsRepository());
   serviceLocator.registerSingleton<SongsRepository>(APISongsRepository());
 
   serviceLocator.registerSingleton<SavedSongsRepository>(

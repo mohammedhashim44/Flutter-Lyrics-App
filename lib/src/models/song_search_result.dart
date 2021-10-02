@@ -6,8 +6,6 @@ class SongSearchResult {
   SongSearchResult(this.songsDetails);
 
   factory SongSearchResult.fromJson(Map<String, dynamic> json) {
-    print(json);
-    print("###" * 50);
     List<SongDetails> songs = [];
     var songsJson = json["hits"] as List<dynamic>;
     songsJson.forEach((songJson) {
