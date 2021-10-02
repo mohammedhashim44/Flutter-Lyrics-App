@@ -9,7 +9,7 @@ class SavedSongsRepository {
 
   List<SongData> getSavedSongs() {
     var songs = _localStorageRepository.getSavedSongs();
-    return songs;
+    return songs.reversed.toList();
   }
 
   Future<void> addNewSong(SongData songLyrics) async {
