@@ -145,7 +145,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
             height: 20,
           ),
           _buildAboutDataText("Source Code", fontSize: 16),
-          _buildLinkText("Github", "https://github.com/mohammedhashim44"),
+          _buildLinkText("Github", "https://github.com/mohammedhashim44/Flutter-Lyrics-App"),
         ],
       ),
     );
