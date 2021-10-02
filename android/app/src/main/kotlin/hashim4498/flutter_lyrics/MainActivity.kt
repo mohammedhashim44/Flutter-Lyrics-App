@@ -1,4 +1,4 @@
-package com.example.flutter_lyrics
+package hashim4498.flutter_lyrics
 
 import io.flutter.embedding.android.FlutterActivity
 
