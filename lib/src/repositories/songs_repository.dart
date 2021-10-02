@@ -27,6 +27,11 @@ class APISongsRepository extends SongsRepository {
   var apiHeaders;
 
   APISongsRepository() {
+    // If token not set, throw exception
+    if(GENIUS_TOKEN == "YOUR_TOKEN_HERE"){
+      throw Exception("PLEASE PUT VALID TOKEN");
+    }
+
     if (_dio == null) {
       String authHeader = 'Bearer ' + GENIUS_TOKEN;
       apiHeaders = {
