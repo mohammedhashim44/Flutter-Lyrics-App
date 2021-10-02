@@ -34,34 +34,19 @@ class _SongScreenState extends State<SongScreen> {
   @override
   void initState() {
     super.initState();
-
     savedToFavorites = _savedSongsRepository.isSongSaved(widget.songData);
     print(savedToFavorites);
+  }
+
+  void setupColors(){
+    backgroundColor = Theme.of(context).primaryColor;
+    backgroundColorBottom = Theme.of(context).scaffoldBackgroundColor;
   }
 
 
   @override
   Widget build(BuildContext context) {
-    Scaffold(
-      body: Scrollbar(
-        thickness: 0.5,
-        child: CustomScrollView(
-          slivers: [
-            SliverAppBar(
-              title: _buildHeader(),
-              floating: false,
-              automaticallyImplyLeading: false,
-              flexibleSpace: Placeholder(),
-              expandedHeight: 100,
-              actions: [],
-            ),
-            SliverToBoxAdapter(
-              child: _buildBody(),
-            ),
-          ],
-        ),
-      ),
-    );
+    setupColors();
     return Scaffold(
       backgroundColor: backgroundColor,
       body: SafeArea(
@@ -187,7 +172,7 @@ class _SongScreenState extends State<SongScreen> {
       widget.songData.lyrics ?? "",
       textAlign: TextAlign.center,
       style: TextStyle(
-        fontSize: 16,
+        fontSize: 18,
         color: lyricsTextColor,
       ),
     );

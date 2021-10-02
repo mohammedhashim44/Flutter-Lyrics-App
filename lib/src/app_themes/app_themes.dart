@@ -27,17 +27,17 @@ List<AppTheme> appThemes = [
     id: "0",
     description: "0",
     data: getThemeDataFromColors(
-      scaffoldBackgroundColor: Color(0xFF162447),
-      primaryColor: Color(0xFF1f4068),
-      accentColor: Color(0xffe43f5a),
+      scaffoldBackgroundColor: Color(0xff1D2D50),
+      primaryColor: Color(0xff1E5F74),
+      accentColor: Colors.white,
     ),
   ),
   AppTheme(
     id: "1",
     description: "1",
     data: getThemeDataFromColors(
-      scaffoldBackgroundColor: Color(0xff16213e),
-      primaryColor: Color(0xffe94560),
+      scaffoldBackgroundColor: Color(0xff150050),
+      primaryColor: Color(0xff610094),
       accentColor: Colors.white,
     ),
   ),
@@ -45,20 +45,12 @@ List<AppTheme> appThemes = [
     id: "2",
     description: "2",
     data: getThemeDataFromColors(
-      scaffoldBackgroundColor: Color(0xff182952),
-      primaryColor: Color(0xff2b3595),
+      scaffoldBackgroundColor: Color(0xff1A1A2E),
+      primaryColor: Color(0xff0F3460),
       accentColor: Colors.white,
     ),
   ),
-  AppTheme(
-    id: "3",
-    description: "3",
-    data: getThemeDataFromColors(
-      scaffoldBackgroundColor: Color(0xff171717),
-      primaryColor: Color(0xff444444),
-      accentColor: Colors.white,
-    ),
-  ),
+
 ];
 
 ThemeData getThemeDataFromColors({
