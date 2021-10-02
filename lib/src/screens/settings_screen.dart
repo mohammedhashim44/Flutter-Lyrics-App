@@ -134,18 +134,14 @@ class _SettingsScreenState extends State<SettingsScreen> {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           _buildAboutDataText("Developed By", fontSize: 16),
-          _buildAboutDataText("Mohammed Hashim", fontSize: 22),
-          SizedBox(
-            height: 20,
-          ),
-          _buildAboutDataText("LinkedIn Account", fontSize: 16),
           _buildLinkText("Mohammed Hashim",
               "https://www.linkedin.com/in/mohammed-hashim-25764b1b2/"),
           SizedBox(
             height: 20,
           ),
           _buildAboutDataText("Source Code", fontSize: 16),
-          _buildLinkText("Github", "https://github.com/mohammedhashim44/Flutter-Lyrics-App"),
+          _buildLinkText("Github",
+              "https://github.com/mohammedhashim44/Flutter-Lyrics-App"),
         ],
       ),
     );
