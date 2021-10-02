@@ -31,8 +31,6 @@ class _SavedSongsScreenState extends State<SavedSongsScreen> {
       body: Center(
         child: Builder(
           builder: (context) {
-            var savedSongsRepo = serviceLocator.get<SavedSongsRepository>();
-            var songs = savedSongsRepo.getSavedSongs();
             if (songs.isEmpty) {
               return _buildNoSavedSongsWidget();
             }
@@ -96,16 +94,6 @@ class _SavedSongsScreenState extends State<SavedSongsScreen> {
   Widget getItemWidget(SongData songData, BuildContext context) {
     return SongListItemWidget(
         SongDetails.fromSongData(songData)
-    );
-    return Container(
-      padding: EdgeInsets.symmetric(
-        horizontal: 20,
-        vertical: 10,
-      ),
-      child: Text("title".toString(),
-          style: TextStyle(
-            fontSize: 20,
-          )),
     );
   }
 
