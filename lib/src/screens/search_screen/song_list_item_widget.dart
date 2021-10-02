@@ -12,7 +12,7 @@ class SongListItemWidget extends StatelessWidget {
     return Container(
       padding: EdgeInsets.symmetric(
         vertical: 10,
-        horizontal: 10,
+        horizontal: 20,
       ),
       child: Row(
         children: [
