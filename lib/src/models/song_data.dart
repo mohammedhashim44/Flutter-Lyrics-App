@@ -26,13 +26,13 @@ class SongData {
       this.description, this.lyrics);
 
   factory SongData.fromJson(Map<String, dynamic> json) {
-    Map<String, dynamic> data = json["data"];
+    Map<String, dynamic> data = json;
     return SongData(
-      data["identifier"],
-      data["song_title"],
-      data["singer"],
-      data["image"],
-      data["description"],
+      data["id"].toString(),
+      data["title"],
+      data["primary_artist"]["name"],
+      data["song_art_image_thumbnail_url"],
+      data["description"]["plain"],
       data["lyrics"],
     );
   }

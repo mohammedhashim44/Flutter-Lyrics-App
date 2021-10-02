@@ -9,9 +9,9 @@ class SongSearchResult {
     print(json);
     print("###" * 50);
     List<SongDetails> songs = [];
-    var songsJson = json["data"] as List<dynamic>;
+    var songsJson = json["hits"] as List<dynamic>;
     songsJson.forEach((songJson) {
-      SongDetails song = SongDetails.fromJson(songJson);
+      SongDetails song = SongDetails.fromJson(songJson["result"]);
       songs.add(song);
     });
     return SongSearchResult(songs);
@@ -34,10 +34,10 @@ class SongDetails {
 
   factory SongDetails.fromJson(Map<String, dynamic> json) {
     return SongDetails(
-      json["identifier"] as String,
-      json["song_name"] as String,
-      json["singer"] as String,
-      json["song_image"] as String,
+      json["id"].toString() ,
+      json["title"] as String,
+      json["primary_artist"]["name"] as String,
+      json["header_image_thumbnail_url"] as String,
     );
   }
 

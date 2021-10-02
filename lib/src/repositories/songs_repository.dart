@@ -3,11 +3,15 @@ import 'package:flutter_lyrics/src/models/song_data.dart';
 import 'package:flutter_lyrics/src/models/song_search_result.dart';
 
 import 'dart:convert';
+import 'package:html/parser.dart' as parser;
 
-//const BASE_URL = "https://mylyrics44.herokuapp.com/api/";
-const BASE_URL = "http://192.168.183.127:5000/api/";
-const SEARCH_URL = BASE_URL + "search_song";
-const FETCH_LYRICS_URL = BASE_URL + "get_song_data";
+const GENIUS_BASE_URL = "https://api.genius.com/";
+const GENIUS_WEB_URL = "https://genius.com";
+
+const GENIUS_SEARCH_URL = GENIUS_BASE_URL + "search/";
+const GENIUS_SONG_URL = GENIUS_BASE_URL + "songs/";
+
+const GENIUS_TOKEN = "YOUR_TOKEN_HERE";
 
 // in milliseconds = 20 seconds
 const requestTimeoutDurationInMilliseconds = 20 * 1000;
@@ -20,9 +24,15 @@ abstract class SongsRepository {
 
 class APISongsRepository extends SongsRepository {
   Dio _dio;
+  var apiHeaders;
 
   APISongsRepository() {
     if (_dio == null) {
+      String authHeader = 'Bearer ' + GENIUS_TOKEN;
+      apiHeaders = {
+        'authorization': authHeader,
+      };
+
       BaseOptions options = new BaseOptions(
         connectTimeout: requestTimeoutDurationInMilliseconds,
         receiveTimeout: requestTimeoutDurationInMilliseconds,
@@ -33,30 +43,55 @@ class APISongsRepository extends SongsRepository {
 
   @override
   Future<SongSearchResult> getSearchResults(String songName) async {
-    var body = {
-      "song": songName,
-    };
-    var response = await _dio.post(
-      SEARCH_URL,
-      data: body,
-    );
-    print(response.data);
-    print(response.data.runtimeType);
-    print("###" * 50);
+    String searchUrl = GENIUS_SEARCH_URL + "?q=$songName";
+    var response = await _dio.get(searchUrl,options: Options(
+      headers: apiHeaders,
+    ));
 
-    return SongSearchResult.fromJson(response.data);
+    var songsData = response.data["response"];
+    return SongSearchResult.fromJson(songsData);
   }
 
   @override
   Future<SongData> fetchSongDataFromIdentifier(String identifier) async {
-    var body = {
-      "identifier": identifier,
-    };
-    print("FETCH SONG DATA : IDENTIFIER => $identifier" * 50);
-    var response = await _dio.post(FETCH_LYRICS_URL, data: body);
-    print(response.data);
-    var songLyrics = SongData.fromJson(response.data);
-    return songLyrics;
+    String songUrl = GENIUS_SONG_URL + "$identifier";
+    songUrl = "$songUrl?text_format=plain";
+
+    print("FETCH SONG DATA : IDENTIFIER => $identifier");
+    print(songUrl);
+
+    var response = await _dio.get(songUrl,options: Options(
+      headers: apiHeaders,
+    ));
+    var jsonData = response.data["response"]["song"];
+
+    var songLink = response.data["response"]["song"]["path"];
+    String lyrics = await getSongLyricsFromLink(songLink);
+
+    var songData = SongData.fromJson(jsonData);
+    songData.lyrics = lyrics;
+
+    return songData;
+  }
+
+  // Helper function
+  Future<String> getSongLyricsFromLink(String link) async {
+    String songUrl = GENIUS_WEB_URL + "$link";
+    print(songUrl);
+    var response = await _dio.get(songUrl);
+    String htmlText = response.data;
+    var parsedDoc = parser.parse(htmlText);
+
+    var lyricsElement = parsedDoc.getElementsByClassName("lyrics");
+    print("ELEMENTS FOUND : ${lyricsElement.length}");
+    if (lyricsElement.length == 1) {
+      String lyricsText = lyricsElement.first.text;
+      lyricsText = lyricsText.replaceAll("<br/>", "\n").replaceAll("<br>", "\n");
+      lyricsText = lyricsText.trim();
+      return lyricsText;
+    } else {
+      throw Exception("No Lyrics Found");
+    }
   }
 }
 
