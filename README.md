@@ -4,6 +4,7 @@ Flutter Lyrics App
 -------------    
  #### Flutter Version Used : 1.22.4
  The app uses [Genius API]("https://docs.genius.com/") to fetch song data and get lyrics.  
+ To test the APK download it from the release files: [Download APK](https://github.com/mohammedhashim44/Flutter-Lyrics-App/releases/download/1.0.4%2B5/app-release.apk)
 
  ## Screenshots   
 <p float="left">  
