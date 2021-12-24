@@ -25,7 +25,8 @@ class LoadedState extends FetchSongDataBlocState {
 
 class ErrorState extends FetchSongDataBlocState {}
 
-class FetchSongDataBloc extends Bloc<FetchSongDataBlocEvent, FetchSongDataBlocState> {
+class FetchSongDataBloc
+    extends Bloc<FetchSongDataBlocEvent, FetchSongDataBlocState> {
   FetchSongDataBloc() : super(InitialState());
 
   SongsRepository _lyricsRepository = serviceLocator.get<SongsRepository>();
@@ -38,10 +39,12 @@ class FetchSongDataBloc extends Bloc<FetchSongDataBlocEvent, FetchSongDataBlocSt
     }
   }
 
-  Stream<FetchSongDataBlocState> _mapSearchEventToState(FetchSongData event) async* {
+  Stream<FetchSongDataBlocState> _mapSearchEventToState(
+      FetchSongData event) async* {
     yield LoadingState();
     try {
-      var songData = await _lyricsRepository.fetchSongDataFromIdentifier(event.identifier);
+      var songData =
+          await _lyricsRepository.fetchSongDataFromIdentifier(event.identifier);
       yield LoadedState(songData);
     } catch (e) {
       print(e);

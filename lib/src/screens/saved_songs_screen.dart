@@ -71,19 +71,17 @@ class _SavedSongsScreenState extends State<SavedSongsScreen> {
   }
 
   Widget _buildSavedSongsWidget() {
-
     return ListView.builder(
-      itemCount: songs.length,
-      itemBuilder: (context, index) {
-        var song = songs[index];
-        return InkWell(
-          onTap: () {
-            onSongClicked(song);
-          },
-          child: getItemWidget(song, context),
-        );
-      }
-    );
+        itemCount: songs.length,
+        itemBuilder: (context, index) {
+          var song = songs[index];
+          return InkWell(
+            onTap: () {
+              onSongClicked(song);
+            },
+            child: getItemWidget(song, context),
+          );
+        });
   }
 
   void updateSongs() {
@@ -92,9 +90,7 @@ class _SavedSongsScreenState extends State<SavedSongsScreen> {
   }
 
   Widget getItemWidget(SongData songData, BuildContext context) {
-    return SongListItemWidget(
-        SongDetails.fromSongData(songData)
-    );
+    return SongListItemWidget(SongDetails.fromSongData(songData));
   }
 
   void onSongClicked(SongData songLyrics) {

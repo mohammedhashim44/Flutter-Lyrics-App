@@ -28,7 +28,7 @@ class APISongsRepository extends SongsRepository {
 
   APISongsRepository() {
     // If token not set, throw exception
-    if(GENIUS_TOKEN == "YOUR_TOKEN_HERE"){
+    if (GENIUS_TOKEN == "YOUR_TOKEN_HERE") {
       throw Exception("PLEASE PUT VALID TOKEN");
     }
 
@@ -49,9 +49,10 @@ class APISongsRepository extends SongsRepository {
   @override
   Future<SongSearchResult> getSearchResults(String songName) async {
     String searchUrl = GENIUS_SEARCH_URL + "?q=$songName";
-    var response = await _dio.get(searchUrl,options: Options(
-      headers: apiHeaders,
-    ));
+    var response = await _dio.get(searchUrl,
+        options: Options(
+          headers: apiHeaders,
+        ));
 
     var songsData = response.data["response"];
     return SongSearchResult.fromJson(songsData);
@@ -65,9 +66,10 @@ class APISongsRepository extends SongsRepository {
     print("FETCH SONG DATA : IDENTIFIER => $identifier");
     print(songUrl);
 
-    var response = await _dio.get(songUrl,options: Options(
-      headers: apiHeaders,
-    ));
+    var response = await _dio.get(songUrl,
+        options: Options(
+          headers: apiHeaders,
+        ));
     var jsonData = response.data["response"]["song"];
 
     var songLink = response.data["response"]["song"]["path"];
