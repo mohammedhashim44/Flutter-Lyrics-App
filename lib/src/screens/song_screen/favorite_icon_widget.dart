@@ -6,8 +6,11 @@ class FavoriteIconWidget extends StatefulWidget {
   final bool isSaved;
   final Function onIconClicked;
 
-  const FavoriteIconWidget(this.isSaved, this.onIconClicked,{this.size = 28,})
-      : assert(isSaved != null);
+  const FavoriteIconWidget(
+    this.isSaved,
+    this.onIconClicked, {
+    this.size = 28,
+  }) : assert(isSaved != null);
 
   @override
   _FavoriteIconWidgetState createState() => _FavoriteIconWidgetState();
@@ -17,7 +20,7 @@ class _FavoriteIconWidgetState extends State<FavoriteIconWidget> {
   String favoriteAnimation = "Favorite";
   String unFavoriteAnimation = "Unfavorite";
   String animation;
-  double size ;
+  double size;
 
   @override
   void initState() {

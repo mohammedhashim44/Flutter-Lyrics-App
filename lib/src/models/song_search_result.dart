@@ -32,7 +32,7 @@ class SongDetails {
 
   factory SongDetails.fromJson(Map<String, dynamic> json) {
     return SongDetails(
-      json["id"].toString() ,
+      json["id"].toString(),
       json["title"] as String,
       json["primary_artist"]["name"] as String,
       json["header_image_thumbnail_url"] as String,
@@ -47,5 +47,4 @@ class SongDetails {
       songData.image,
     );
   }
-
 }

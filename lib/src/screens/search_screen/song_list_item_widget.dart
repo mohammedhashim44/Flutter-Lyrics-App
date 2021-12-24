@@ -17,7 +17,7 @@ class SongListItemWidget extends StatelessWidget {
       child: Row(
         children: [
           Hero(
-            tag: songDetails.identifier+"image",
+            tag: songDetails.identifier + "image",
             child: AppImage(
               songDetails.songImage,
             ),
@@ -30,7 +30,7 @@ class SongListItemWidget extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Hero(
-                  tag: songDetails.identifier+"song_name",
+                  tag: songDetails.identifier + "song_name",
                   child: Text(
                     songDetails.songName,
                     overflow: TextOverflow.ellipsis,
@@ -39,7 +39,7 @@ class SongListItemWidget extends StatelessWidget {
                   ),
                 ),
                 Hero(
-                  tag: songDetails.identifier+"singer",
+                  tag: songDetails.identifier + "singer",
                   child: Text(
                     songDetails.singer,
                     overflow: TextOverflow.ellipsis,

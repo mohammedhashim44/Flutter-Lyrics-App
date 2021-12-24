@@ -91,5 +91,4 @@ class _SongDataScreenBuilderState extends State<SongDataScreenBuilder> {
   Widget _buildLoadedWidget(SongData songData) {
     return SongScreen(songData);
   }
-
 }

@@ -38,11 +38,10 @@ class _SongScreenState extends State<SongScreen> {
     print(savedToFavorites);
   }
 
-  void setupColors(){
+  void setupColors() {
     backgroundColor = Theme.of(context).primaryColor;
     backgroundColorBottom = Theme.of(context).scaffoldBackgroundColor;
   }
-
 
   @override
   Widget build(BuildContext context) {

@@ -50,7 +50,6 @@ List<AppTheme> appThemes = [
       accentColor: Colors.white,
     ),
   ),
-
 ];
 
 ThemeData getThemeDataFromColors({

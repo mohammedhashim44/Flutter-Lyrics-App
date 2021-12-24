@@ -28,7 +28,7 @@ class APISongsRepository extends SongsRepository {
 
   APISongsRepository() {
     // If token not set, throw exception
-    if(GENIUS_TOKEN == "YOUR_TOKEN_HERE"){
+    if (GENIUS_TOKEN == "YOUR_TOKEN_HERE") {
       throw Exception("PLEASE PUT VALID TOKEN");
     }
 
@@ -49,9 +49,10 @@ class APISongsRepository extends SongsRepository {
   @override
   Future<SongSearchResult> getSearchResults(String songName) async {
     String searchUrl = GENIUS_SEARCH_URL + "?q=$songName";
-    var response = await _dio.get(searchUrl,options: Options(
-      headers: apiHeaders,
-    ));
+    var response = await _dio.get(searchUrl,
+        options: Options(
+          headers: apiHeaders,
+        ));
 
     var songsData = response.data["response"];
     return SongSearchResult.fromJson(songsData);
@@ -65,9 +66,10 @@ class APISongsRepository extends SongsRepository {
     print("FETCH SONG DATA : IDENTIFIER => $identifier");
     print(songUrl);
 
-    var response = await _dio.get(songUrl,options: Options(
-      headers: apiHeaders,
-    ));
+    var response = await _dio.get(songUrl,
+        options: Options(
+          headers: apiHeaders,
+        ));
     var jsonData = response.data["response"]["song"];
 
     var songLink = response.data["response"]["song"]["path"];
@@ -87,12 +89,19 @@ class APISongsRepository extends SongsRepository {
     String htmlText = response.data;
     var parsedDoc = parser.parse(htmlText);
 
-    var lyricsElement = parsedDoc.getElementsByClassName("lyrics");
-    print("ELEMENTS FOUND : ${lyricsElement.length}");
-    if (lyricsElement.length == 1) {
-      String lyricsText = lyricsElement.first.text;
-      lyricsText = lyricsText.replaceAll("<br/>", "\n").replaceAll("<br>", "\n");
-      lyricsText = lyricsText.trim();
+    var elements = parsedDoc
+        .getElementsByTagName("div")
+        .where((element) =>
+            element.attributes.containsKey("data-lyrics-container"))
+        .toList();
+
+    if (elements.isNotEmpty) {
+      String lyricsText = "";
+      elements.forEach((element) {
+        var x = element;
+        x.innerHtml = x.innerHtml.replaceAll("<br>", "\n");
+        lyricsText += x.text;
+      });
       return lyricsText;
     } else {
       throw Exception("No Lyrics Found");
