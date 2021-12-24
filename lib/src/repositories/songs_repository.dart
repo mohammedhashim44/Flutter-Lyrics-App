@@ -87,12 +87,19 @@ class APISongsRepository extends SongsRepository {
     String htmlText = response.data;
     var parsedDoc = parser.parse(htmlText);
 
-    var lyricsElement = parsedDoc.getElementsByClassName("lyrics");
-    print("ELEMENTS FOUND : ${lyricsElement.length}");
-    if (lyricsElement.length == 1) {
-      String lyricsText = lyricsElement.first.text;
-      lyricsText = lyricsText.replaceAll("<br/>", "\n").replaceAll("<br>", "\n");
-      lyricsText = lyricsText.trim();
+    var elements = parsedDoc
+        .getElementsByTagName("div")
+        .where((element) =>
+            element.attributes.containsKey("data-lyrics-container"))
+        .toList();
+
+    if (elements.isNotEmpty) {
+      String lyricsText = "";
+      elements.forEach((element) {
+        var x = element;
+        x.innerHtml = x.innerHtml.replaceAll("<br>", "\n");
+        lyricsText += x.text;
+      });
       return lyricsText;
     } else {
       throw Exception("No Lyrics Found");
