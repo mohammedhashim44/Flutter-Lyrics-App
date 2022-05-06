@@ -102,7 +102,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
             valueListenable: serviceLocator
                 .get<LocalStorageRepository>()
                 .fontFactorListenable,
-            builder: (context, double fontFactor, child) {
+            builder: (context, double? fontFactor, child) {
               return Container(
                 padding: EdgeInsets.symmetric(
                   horizontal: 25,
@@ -112,7 +112,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   width: 100,
                   child: Center(
                     child: Text(
-                      fontFactor.toStringAsFixed(1),
+                      fontFactor!.toStringAsFixed(1),
                       maxLines: 1,
                       textAlign: TextAlign.center,
                     ),
@@ -180,18 +180,18 @@ class _SettingsScreenState extends State<SettingsScreen> {
   }
 
   void incrementFont() {
-    double value = _localStorageRepo.fontFactorListenable.value;
+    double value = _localStorageRepo.fontFactorListenable.value!;
     _localStorageRepo.setFontFactor(value + 0.1);
   }
 
   void decrementFont() {
-    double value = _localStorageRepo.fontFactorListenable.value;
+    double value = _localStorageRepo.fontFactorListenable.value!;
     _localStorageRepo.setFontFactor(value - 0.1);
   }
 
   Widget _buildIconButton(IconData icon, Function onClicked) {
     return GestureDetector(
-      onTap: onClicked,
+      onTap: onClicked as void Function()?,
       child: Icon(
         icon,
         size: 40,

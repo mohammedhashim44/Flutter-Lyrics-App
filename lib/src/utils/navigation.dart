@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-void goToScreen(BuildContext context, Widget screen, {Function onReturn}) {
+void goToScreen(BuildContext context, Widget screen, {Function? onReturn}) {
   Duration animationDuration = Duration(milliseconds: 500);
 
   Navigator.push(

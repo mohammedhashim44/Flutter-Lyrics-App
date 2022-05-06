@@ -22,10 +22,10 @@ class _SearchScreenState extends State<SearchScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: _buildAppBar(),
+      appBar: _buildAppBar() as PreferredSizeWidget?,
       body: BlocBuilder<SearchSongBloc, SearchSongBlocState>(
         builder: (context, state) {
-          Widget screenWidget;
+          late Widget screenWidget;
           if (state is InitialState) {
             screenWidget = _buildInitialWidget();
           } else if (state is LoadingState) {
@@ -53,7 +53,7 @@ class _SearchScreenState extends State<SearchScreen> {
   Future<bool> onUserHitBack() async {
     // If user hit back button and has result,clear the result
     // else , pop the screen
-    var state = context.read<SearchSongBloc>().state;
+    SearchSongBlocState state = context.read<SearchSongBloc>().state;
     if (state is LoadedState) {
       context.read<SearchSongBloc>().add(ClearSearch());
       return false;
@@ -62,7 +62,7 @@ class _SearchScreenState extends State<SearchScreen> {
     }
   }
 
-  void onSearchSubmitted(String query) {
+  void onSearchSubmitted(String? query) {
     if (query != null) {
       lastSearchedSong = query;
       context.read<SearchSongBloc>().add(SearchForSong(query));

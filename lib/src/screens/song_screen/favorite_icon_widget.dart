@@ -19,8 +19,8 @@ class FavoriteIconWidget extends StatefulWidget {
 class _FavoriteIconWidgetState extends State<FavoriteIconWidget> {
   String favoriteAnimation = "Favorite";
   String unFavoriteAnimation = "Unfavorite";
-  String animation;
-  double size;
+  String? animation;
+  double? size;
 
   @override
   void initState() {

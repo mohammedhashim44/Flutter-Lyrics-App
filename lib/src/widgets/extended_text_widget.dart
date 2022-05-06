@@ -9,7 +9,7 @@ class ExtendedTextWidget extends StatefulWidget {
   const ExtendedTextWidget(
     this.label,
     this.text, {
-    Key key,
+    Key? key,
     this.color = Colors.white,
     this.backgroundColor = Colors.blueGrey,
   }) : super(key: key);
@@ -20,7 +20,7 @@ class ExtendedTextWidget extends StatefulWidget {
 
 class _ExtendedTextWidgetState extends State<ExtendedTextWidget>
     with TickerProviderStateMixin {
-  AnimationController _animationController;
+  late AnimationController _animationController;
   Duration animatedIconsDuration = Duration(seconds: 1);
   Duration textExpansion = Duration(seconds: 1);
 
@@ -108,7 +108,7 @@ class _ExtendedTextWidgetState extends State<ExtendedTextWidget>
 class ExpandedSection extends StatefulWidget {
   final Duration duration;
 
-  final Widget child;
+  final Widget? child;
   final bool expand;
 
   ExpandedSection(
@@ -122,9 +122,9 @@ class ExpandedSection extends StatefulWidget {
 
 class _ExpandedSectionState extends State<ExpandedSection>
     with SingleTickerProviderStateMixin {
-  AnimationController expandController;
-  Animation<double> animation;
-  Duration duration;
+  late AnimationController expandController;
+  late Animation<double> animation;
+  Duration? duration;
 
   @override
   void initState() {

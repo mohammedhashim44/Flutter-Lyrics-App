@@ -5,7 +5,7 @@ import 'package:flutter/painting.dart';
 class NetworkErrorWidget extends StatelessWidget {
   final Function onRetryClicked;
 
-  const NetworkErrorWidget({this.onRetryClicked})
+  const NetworkErrorWidget({required this.onRetryClicked})
       : assert(onRetryClicked != null);
 
   @override

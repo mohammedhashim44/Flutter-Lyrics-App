@@ -5,22 +5,22 @@ part 'song_data.g.dart';
 @HiveType(typeId: 0)
 class SongData {
   @HiveField(0)
-  String identifier;
+  String? identifier;
 
   @HiveField(1)
-  String songTitle;
+  String? songTitle;
 
   @HiveField(2)
-  String singer;
+  String? singer;
 
   @HiveField(3)
-  String image;
+  String? image;
 
   @HiveField(4)
-  String description;
+  String? description;
 
   @HiveField(5)
-  String lyrics;
+  String? lyrics;
 
   SongData(this.identifier, this.songTitle, this.singer, this.image,
       this.description, this.lyrics);

@@ -5,8 +5,8 @@ import 'package:flutter/material.dart';
 class AppImage extends StatelessWidget {
   final String image;
   final double imageSize;
-  double width;
-  double height;
+  double? width;
+  double? height;
   final bool square;
   final bool circle;
   final double roundness;
@@ -14,7 +14,7 @@ class AppImage extends StatelessWidget {
 
   AppImage(
     this.image, {
-    Key key,
+    Key? key,
     this.imageSize = 70,
     this.width,
     this.height,
@@ -22,8 +22,7 @@ class AppImage extends StatelessWidget {
     this.circle = false,
     this.roundness = 5.0,
     this.backgroundColor = const Color(0xffe7e7e7e),
-  })  : assert(image != null),
-        super(key: key);
+  })  : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -32,8 +31,8 @@ class AppImage extends StatelessWidget {
       height = imageSize;
     }
 
-    //print(image);
-    if (image == null || image == "null") {
+
+    if (image == "null" ) {
       return getImageErrorWidget();
     }
 
@@ -49,7 +48,7 @@ class AppImage extends StatelessWidget {
     );
   }
 
-  Widget getProgressWidget(double progress) {
+  Widget getProgressWidget(double? progress) {
     return Container(
       width: width,
       height: height,

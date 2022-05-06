@@ -12,14 +12,16 @@ import 'package:flutter_lyrics/src/widgets/network_error_widget.dart';
 class SongDataLoaderScreen extends StatelessWidget {
   final SongDetails songDetails;
 
-  const SongDataLoaderScreen(this.songDetails) : assert(songDetails != null);
+  const SongDataLoaderScreen(this.songDetails);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: BlocProvider(
-        create: (context) =>
-            FetchSongDataBloc()..add(FetchSongData(songDetails.identifier)),
+        create: (context) => FetchSongDataBloc()
+          ..add(
+            FetchSongData(songDetails.identifier!),
+          ),
         child: SongDataScreenBuilder(songDetails),
       ),
     );
@@ -78,9 +80,9 @@ class _SongDataScreenBuilderState extends State<SongDataScreenBuilder> {
 
   Widget _buildErrorWidget(BuildContext context) {
     void onRetryClicked() {
-      context
-          .read<FetchSongDataBloc>()
-          .add(FetchSongData(widget.songDetails.identifier));
+      context.read<FetchSongDataBloc>().add(
+            FetchSongData(widget.songDetails.identifier!),
+          );
     }
 
     return NetworkErrorWidget(

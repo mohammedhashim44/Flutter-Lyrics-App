@@ -14,7 +14,7 @@ class SavedSongsScreen extends StatefulWidget {
 }
 
 class _SavedSongsScreenState extends State<SavedSongsScreen> {
-  List<SongData> songs;
+  late List<SongData> songs;
 
   @override
   void initState() {

@@ -26,15 +26,15 @@ class _SongScreenState extends State<SongScreen> {
   Color songNameTextColor = Colors.white;
   Color singerNameTextColor = Colors.white;
 
-  bool savedToFavorites;
+  bool? savedToFavorites;
 
-  SavedSongsRepository _savedSongsRepository =
+  SavedSongsRepository? _savedSongsRepository =
       serviceLocator<SavedSongsRepository>();
 
   @override
   void initState() {
     super.initState();
-    savedToFavorites = _savedSongsRepository.isSongSaved(widget.songData);
+    savedToFavorites = _savedSongsRepository!.isSongSaved(widget.songData);
     print(savedToFavorites);
   }
 
@@ -114,9 +114,9 @@ class _SongScreenState extends State<SongScreen> {
       child: Row(
         children: [
           Hero(
-            tag: widget.songData.identifier + "image",
+            tag: widget.songData.identifier! + "image",
             child: AppImage(
-              widget.songData.image,
+              widget.songData.image!,
             ),
           ),
           SizedBox(
@@ -127,23 +127,23 @@ class _SongScreenState extends State<SongScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Hero(
-                  tag: widget.songData.identifier + "song_name",
+                  tag: widget.songData.identifier! + "song_name",
                   child: Text(
-                    widget.songData.songTitle,
+                    widget.songData.songTitle!,
                     overflow: TextOverflow.ellipsis,
                     maxLines: 1,
-                    style: Theme.of(context).textTheme.subtitle1.apply(
+                    style: Theme.of(context).textTheme.subtitle1!.apply(
                           color: songNameTextColor,
                         ),
                   ),
                 ),
                 Hero(
-                  tag: widget.songData.identifier + "singer",
+                  tag: widget.songData.identifier! + "singer",
                   child: Text(
-                    widget.songData.singer,
+                    widget.songData.singer!,
                     overflow: TextOverflow.ellipsis,
                     maxLines: 1,
-                    style: Theme.of(context).textTheme.subtitle1.apply(
+                    style: Theme.of(context).textTheme.subtitle1!.apply(
                           color: singerNameTextColor,
                         ),
                   ),
@@ -178,20 +178,20 @@ class _SongScreenState extends State<SongScreen> {
   }
 
   Widget _buildFavoriteWidget() {
-    return FavoriteIconWidget(savedToFavorites, () {
+    return FavoriteIconWidget(savedToFavorites!, () {
       onFloatingButtonClicked(widget.songData);
     });
   }
 
   void onFloatingButtonClicked(SongData songLyrics) async {
     var savedSongRepo = serviceLocator.get<SavedSongsRepository>();
-    if (savedToFavorites) {
+    if (savedToFavorites!) {
       savedSongRepo.deleteSong(songLyrics);
     } else {
       await savedSongRepo.addNewSong(songLyrics);
     }
     setState(() {
-      savedToFavorites = !savedToFavorites;
+      savedToFavorites = !savedToFavorites!;
     });
   }
 }

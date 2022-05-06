@@ -17,9 +17,9 @@ class SongListItemWidget extends StatelessWidget {
       child: Row(
         children: [
           Hero(
-            tag: songDetails.identifier + "image",
+            tag: songDetails.identifier! + "image",
             child: AppImage(
-              songDetails.songImage,
+              songDetails.songImage!,
             ),
           ),
           SizedBox(
@@ -30,25 +30,25 @@ class SongListItemWidget extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Hero(
-                  tag: songDetails.identifier + "song_name",
+                  tag: songDetails.identifier! + "song_name",
                   child: Text(
-                    songDetails.songName,
+                    songDetails.songName!,
                     overflow: TextOverflow.ellipsis,
                     maxLines: 1,
                     style: Theme.of(context).textTheme.headline6,
                   ),
                 ),
                 Hero(
-                  tag: songDetails.identifier + "singer",
+                  tag: songDetails.identifier! + "singer",
                   child: Text(
-                    songDetails.singer,
+                    songDetails.singer!,
                     overflow: TextOverflow.ellipsis,
                     maxLines: 1,
-                    style: Theme.of(context).textTheme.subtitle1.apply(
+                    style: Theme.of(context).textTheme.subtitle1!.apply(
                           color: Theme.of(context)
                               .textTheme
-                              .subtitle1
-                              .color
+                              .subtitle1!
+                              .color!
                               .withOpacity(0.7),
                         ),
                   ),

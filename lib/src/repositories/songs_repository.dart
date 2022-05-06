@@ -23,7 +23,7 @@ abstract class SongsRepository {
 }
 
 class APISongsRepository extends SongsRepository {
-  Dio _dio;
+  late Dio _dio;
   var apiHeaders;
 
   APISongsRepository() {
@@ -32,18 +32,16 @@ class APISongsRepository extends SongsRepository {
       throw Exception("PLEASE PUT VALID TOKEN");
     }
 
-    if (_dio == null) {
-      String authHeader = 'Bearer ' + GENIUS_TOKEN;
-      apiHeaders = {
-        'authorization': authHeader,
-      };
+    String authHeader = 'Bearer ' + GENIUS_TOKEN;
+    apiHeaders = {
+      'authorization': authHeader,
+    };
 
-      BaseOptions options = new BaseOptions(
-        connectTimeout: requestTimeoutDurationInMilliseconds,
-        receiveTimeout: requestTimeoutDurationInMilliseconds,
-      );
-      _dio = new Dio(options);
-    }
+    BaseOptions options = new BaseOptions(
+      connectTimeout: requestTimeoutDurationInMilliseconds,
+      receiveTimeout: requestTimeoutDurationInMilliseconds,
+    );
+    _dio = new Dio(options);
   }
 
   @override

@@ -22,9 +22,9 @@ class App extends StatelessWidget {
               valueListenable: serviceLocator
                   .get<LocalStorageRepository>()
                   .fontFactorListenable,
-              builder: (context, fontFactor, _) {
+              builder: (context, dynamic fontFactor, _) {
                 return MediaQuery(
-                  child: child,
+                  child: child!,
                   data: MediaQuery.of(context).copyWith(
                     textScaleFactor: fontFactor,
                   ),

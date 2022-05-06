@@ -16,10 +16,10 @@ const double MAX_FONT_FACTOR = 2;
 const double MIN_FONT_FACTOR = 1;
 
 class LocalStorageRepository {
-  ValueNotifier<double> fontFactorListenable;
+  late ValueNotifier<double?> fontFactorListenable;
 
-  Box _songBox;
-  Box _settingsBox;
+  late Box _songBox;
+  late Box _settingsBox;
 
   Future<void> init() async {
     Directory directory = await pathProvider.getApplicationDocumentsDirectory();
@@ -65,7 +65,7 @@ class LocalStorageRepository {
     return true;
   }
 
-  double getFontFactor() {
+  double? getFontFactor() {
     return _settingsBox.get(FONT_FACTOR_KEY, defaultValue: 1.0);
   }
 

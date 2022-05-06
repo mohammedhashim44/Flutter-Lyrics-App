@@ -11,7 +11,7 @@ class DashboardScreen extends StatefulWidget {
 
 class _DashboardScreenState extends State<DashboardScreen> {
   int _currentIndex = 0;
-  PageController _pageController;
+  PageController? _pageController;
 
   @override
   void initState() {
@@ -54,7 +54,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
   void updateIndex(int index) {
     setState(() {
       _currentIndex = index;
-      _pageController.animateToPage(
+      _pageController!.animateToPage(
         index,
         curve: Curves.easeInOut,
         duration: Duration(milliseconds: 500),
@@ -65,11 +65,11 @@ class _DashboardScreenState extends State<DashboardScreen> {
 
 class BottomNavigatorBarWidget extends StatelessWidget {
   final double navBarRoundness = 20;
-  final int currentIndex;
-  final Function onItemClicked;
+  final int? currentIndex;
+  final Function? onItemClicked;
 
   const BottomNavigatorBarWidget(
-      {Key key, this.currentIndex, this.onItemClicked})
+      {Key? key, this.currentIndex, this.onItemClicked})
       : super(key: key);
 
   @override
@@ -87,8 +87,8 @@ class BottomNavigatorBarWidget extends StatelessWidget {
           topRight: Radius.circular(navBarRoundness),
         ),
         child: BottomNavigationBar(
-          currentIndex: currentIndex,
-          onTap: onItemClicked,
+          currentIndex: currentIndex!,
+          onTap: onItemClicked as void Function(int)?,
           type: BottomNavigationBarType.fixed,
           items: navigatorItems.map((e) {
             return BottomNavigationBarItem(

@@ -53,9 +53,9 @@ List<AppTheme> appThemes = [
 ];
 
 ThemeData getThemeDataFromColors({
-  Color primaryColor,
-  Color accentColor,
-  Color scaffoldBackgroundColor,
+  Color? primaryColor,
+  required Color accentColor,
+  Color? scaffoldBackgroundColor,
 }) {
   return baseThemeData.copyWith(
       scaffoldBackgroundColor: scaffoldBackgroundColor,
