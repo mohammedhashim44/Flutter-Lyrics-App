@@ -64,7 +64,9 @@ class _SearchScreenState extends State<SearchScreen> {
 
   void onSearchSubmitted(String? query) {
     if (query != null) {
-      lastSearchedSong = query;
+      setState(() {
+        lastSearchedSong = query;
+      });
       context.read<SearchSongBloc>().add(SearchForSong(query));
     }
   }
@@ -73,7 +75,10 @@ class _SearchScreenState extends State<SearchScreen> {
     return AppBar(
       elevation: 4,
       title: Text(
-        "Search",
+        "Search" +
+            (lastSearchedSong.trim().isEmpty
+                ? ""
+                : ": " + lastSearchedSong.trim()),
       ),
       actions: <Widget>[
         IconButton(
@@ -90,6 +95,7 @@ class _SearchScreenState extends State<SearchScreen> {
     var searchedSong = await showSearch(
       context: context,
       delegate: SongsSearchDelegate(),
+      query: lastSearchedSong,
     );
     onSearchSubmitted(searchedSong);
   }
