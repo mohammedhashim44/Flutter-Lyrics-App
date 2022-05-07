@@ -60,6 +60,9 @@ ThemeData getThemeDataFromColors({
   return baseThemeData.copyWith(
       scaffoldBackgroundColor: scaffoldBackgroundColor,
       primaryColor: primaryColor,
+      appBarTheme: AppBarTheme(
+        backgroundColor: primaryColor,
+      ),
       bottomNavigationBarTheme: BottomNavigationBarThemeData(
         selectedItemColor: accentColor,
         unselectedItemColor: accentColor.withOpacity(0.5),
