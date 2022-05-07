@@ -11,7 +11,8 @@ const GENIUS_WEB_URL = "https://genius.com";
 const GENIUS_SEARCH_URL = GENIUS_BASE_URL + "search/";
 const GENIUS_SONG_URL = GENIUS_BASE_URL + "songs/";
 
-const GENIUS_TOKEN = "0SZVftNv5mcdjQMnsHpOYAYXv00xWJx2mUdLGawgnihER9FL2Q-MQnZsHTGAfZ53";
+const GENIUS_TOKEN =
+    "0SZVftNv5mcdjQMnsHpOYAYXv00xWJx2mUdLGawgnihER9FL2Q-MQnZsHTGAfZ53";
 
 // in milliseconds = 20 seconds
 const requestTimeoutDurationInMilliseconds = 20 * 1000;

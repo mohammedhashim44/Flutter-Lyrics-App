@@ -4,13 +4,12 @@ class SongsSearchDelegate extends SearchDelegate {
   @override
   ThemeData appBarTheme(BuildContext context) {
     return Theme.of(context).copyWith(
-      inputDecorationTheme: InputDecorationTheme(
-        border: InputBorder.none,
-      ),
-      appBarTheme: Theme.of(context).appBarTheme.copyWith(
-        elevation: 0,
-      )
-    );
+        inputDecorationTheme: InputDecorationTheme(
+          border: InputBorder.none,
+        ),
+        appBarTheme: Theme.of(context).appBarTheme.copyWith(
+              elevation: 0,
+            ));
   }
 
   // This will be called when user press enter

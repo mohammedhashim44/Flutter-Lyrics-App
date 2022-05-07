@@ -22,7 +22,7 @@ class AppImage extends StatelessWidget {
     this.circle = false,
     this.roundness = 5.0,
     this.backgroundColor = const Color(0xffe7e7e7e),
-  })  : super(key: key);
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -31,8 +31,7 @@ class AppImage extends StatelessWidget {
       height = imageSize;
     }
 
-
-    if (image == "null" ) {
+    if (image == "null") {
       return getImageErrorWidget();
     }
 
