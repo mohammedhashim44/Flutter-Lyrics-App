@@ -47,35 +47,34 @@ class _SongScreenState extends State<SongScreen> {
   Widget build(BuildContext context) {
     setupColors();
     return Scaffold(
-      backgroundColor: backgroundColor,
-      body: SafeArea(
-        child: Container(
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              colors: [
-                backgroundColor,
-                backgroundColorBottom,
-              ],
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
-            ),
-          ),
-          child: Column(
-            children: [
-              Container(
-                margin: EdgeInsets.symmetric(
-                  horizontal: 20,
-                  vertical: 10,
-                ),
-                child: _buildHeader(),
-              ),
-              Expanded(
-                child: Container(
-                  child: _buildBody(),
-                ),
-              ),
+      body: Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            colors: [
+              backgroundColor,
+              backgroundColorBottom,
             ],
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
           ),
+        ),
+        child: CustomScrollView(
+          slivers: [
+            SliverToBoxAdapter(
+              child: SafeArea(
+                child: Container(
+                  padding: EdgeInsets.symmetric(
+                    vertical: 20,
+                    horizontal: 20,
+                  ),
+                  child: _buildHeader(),
+                ),
+              ),
+            ),
+            SliverToBoxAdapter(
+              child: _buildBody(),
+            ),
+          ],
         ),
       ),
     );
