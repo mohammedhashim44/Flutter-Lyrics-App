@@ -3,7 +3,11 @@ import 'package:flutter/material.dart';
 class SongsSearchDelegate extends SearchDelegate {
   @override
   ThemeData appBarTheme(BuildContext context) {
-    return Theme.of(context);
+    return Theme.of(context).copyWith(
+      inputDecorationTheme: InputDecorationTheme(
+        border: InputBorder.none,
+      ),
+    );
   }
 
   // This will be called when user press enter
