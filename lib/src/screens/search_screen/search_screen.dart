@@ -73,7 +73,7 @@ class _SearchScreenState extends State<SearchScreen> {
 
   Widget _buildAppBar() {
     return AppBar(
-      elevation: 4,
+      elevation: 0,
       title: Text(
         "Search" +
             (lastSearchedSong.trim().isEmpty

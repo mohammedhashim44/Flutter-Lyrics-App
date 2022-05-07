@@ -26,6 +26,7 @@ class _SavedSongsScreenState extends State<SavedSongsScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        elevation: 0,
         title: Text("Saved Songs: ${songs.length}"),
       ),
       body: Center(

@@ -7,6 +7,9 @@ class SongsSearchDelegate extends SearchDelegate {
       inputDecorationTheme: InputDecorationTheme(
         border: InputBorder.none,
       ),
+      appBarTheme: Theme.of(context).appBarTheme.copyWith(
+        elevation: 0,
+      )
     );
   }
 
