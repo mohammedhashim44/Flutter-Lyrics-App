@@ -167,7 +167,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
           fontSize: 22,
           fontWeight: FontWeight.bold,
           decoration: TextDecoration.underline,
-          color: Theme.of(context).primaryColor,
+          color: Colors.white,
         ),
       ),
     );

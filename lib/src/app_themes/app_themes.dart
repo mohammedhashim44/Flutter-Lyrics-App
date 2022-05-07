@@ -27,23 +27,14 @@ List<AppTheme> appThemes = [
     id: "0",
     description: "0",
     data: getThemeDataFromColors(
-      scaffoldBackgroundColor: Color(0xff1D2D50),
-      primaryColor: Color(0xff1E5F74),
+      scaffoldBackgroundColor: Color(0xff00132d),
+      primaryColor: Color(0xff00377e),
       accentColor: Colors.white,
     ),
   ),
   AppTheme(
     id: "1",
     description: "1",
-    data: getThemeDataFromColors(
-      scaffoldBackgroundColor: Color(0xff150050),
-      primaryColor: Color(0xff610094),
-      accentColor: Colors.white,
-    ),
-  ),
-  AppTheme(
-    id: "2",
-    description: "2",
     data: getThemeDataFromColors(
       scaffoldBackgroundColor: Color(0xff1A1A2E),
       primaryColor: Color(0xff0F3460),
@@ -58,23 +49,24 @@ ThemeData getThemeDataFromColors({
   Color? scaffoldBackgroundColor,
 }) {
   return baseThemeData.copyWith(
-      scaffoldBackgroundColor: scaffoldBackgroundColor,
-      primaryColor: primaryColor,
-      appBarTheme: AppBarTheme(
-        backgroundColor: primaryColor,
-      ),
-      bottomNavigationBarTheme: BottomNavigationBarThemeData(
-        selectedItemColor: accentColor,
-        unselectedItemColor: accentColor.withOpacity(0.5),
-      ),
-      canvasColor: primaryColor,
-      floatingActionButtonTheme: FloatingActionButtonThemeData(
-        backgroundColor: accentColor,
-      ),
-      buttonTheme: ButtonThemeData(
-        buttonColor: primaryColor,
-      ),
-      iconTheme: IconThemeData(
-        color: accentColor,
-      ));
+    scaffoldBackgroundColor: scaffoldBackgroundColor,
+    primaryColor: primaryColor,
+    appBarTheme: AppBarTheme(
+      backgroundColor: primaryColor,
+    ),
+    bottomNavigationBarTheme: BottomNavigationBarThemeData(
+      selectedItemColor: accentColor,
+      unselectedItemColor: accentColor.withOpacity(0.5),
+    ),
+    canvasColor: primaryColor,
+    floatingActionButtonTheme: FloatingActionButtonThemeData(
+      backgroundColor: accentColor,
+    ),
+    buttonTheme: ButtonThemeData(
+      buttonColor: primaryColor,
+    ),
+    iconTheme: IconThemeData(
+      color: accentColor,
+    ),
+  );
 }
