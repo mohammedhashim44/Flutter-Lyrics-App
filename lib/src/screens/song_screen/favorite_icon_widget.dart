@@ -10,7 +10,7 @@ class FavoriteIconWidget extends StatefulWidget {
     this.isSaved,
     this.onIconClicked, {
     this.size = 28,
-  }) : assert(isSaved != null);
+  });
 
   @override
   _FavoriteIconWidgetState createState() => _FavoriteIconWidgetState();

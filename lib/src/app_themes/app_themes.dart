@@ -59,7 +59,6 @@ ThemeData getThemeDataFromColors({
 }) {
   return baseThemeData.copyWith(
       scaffoldBackgroundColor: scaffoldBackgroundColor,
-      accentColor: accentColor,
       primaryColor: primaryColor,
       bottomNavigationBarTheme: BottomNavigationBarThemeData(
         selectedItemColor: accentColor,

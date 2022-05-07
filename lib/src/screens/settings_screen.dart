@@ -167,15 +167,16 @@ class _SettingsScreenState extends State<SettingsScreen> {
           fontSize: 22,
           fontWeight: FontWeight.bold,
           decoration: TextDecoration.underline,
-          color: Theme.of(context).accentColor,
+          color: Theme.of(context).primaryColor,
         ),
       ),
     );
   }
 
   void _launchURL(String url) async {
-    if (await canLaunch(url)) {
-      await launch(url);
+    Uri uri = Uri.parse(url);
+    if (await canLaunchUrl(uri)) {
+      await launchUrl(uri);
     }
   }
 
