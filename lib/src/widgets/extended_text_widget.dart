@@ -11,7 +11,7 @@ class ExtendedTextWidget extends StatefulWidget {
     this.text, {
     Key? key,
     this.color = Colors.white,
-    this.backgroundColor = Colors.blueGrey,
+    this.backgroundColor = Colors.white,
   }) : super(key: key);
 
   @override
@@ -56,7 +56,7 @@ class _ExtendedTextWidgetState extends State<ExtendedTextWidget>
             ),
             decoration: BoxDecoration(
               color: widget.backgroundColor.withOpacity(0.2),
-              borderRadius: BorderRadius.circular(15),
+              borderRadius: BorderRadius.circular(100),
             ),
             child: GestureDetector(
               onTap: toggle,

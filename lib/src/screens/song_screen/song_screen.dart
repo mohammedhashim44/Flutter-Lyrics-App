@@ -161,7 +161,6 @@ class _SongScreenState extends State<SongScreen> {
       "Description",
       widget.songData.description ?? "",
       color: lyricsTextColor,
-      backgroundColor: backgroundColor,
     );
   }
 
